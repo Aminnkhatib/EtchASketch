@@ -1,14 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body> 
+    <button id = "btn" onclick="changeGrid()">Change Grid</button>
+    <div id="div"></div>
     <script>
-        const div = document.createElement("div");
+        const div = document.querySelector("#div");
+        const btn = document.querySelector("#btn");
+
+        function makeRows(rows, cols){
+            div.style.setProperty("--grid-rows", rows);
+            div.style.setProperty("--grid-cols", cols);
+            for(i = 0; i < (rows*cols);i++){
+                let cell = document.createElement("cell");
+                cell.classList.add("grid-item");
+                div.appendChild(cell)
+            }
+            mouseColor();
+        }
+        
+        function mouseColor(){
+            let trail = document.querySelectorAll(".grid-item");
+            trail.forEach(item => {
+                item.addEventListener("mouseenter", () => {
+                    item.style.backgroundColor = "blue";
+                });
+            });
+        }
+
+        
+
+        makeRows(16,16);
     </script>
 </body>
 </html>
