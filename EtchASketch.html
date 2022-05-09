@@ -20,9 +20,13 @@
             for(i = 0; i < (rows*cols);i++){
                 let cell = document.createElement("cell");
                 cell.classList.add("grid-item");
-                div.appendChild(cell)
+                div.appendChild(cell);
             }
             mouseColor();
+        }
+
+        function clearRows(){
+            div.innerHTML = "";
         }
         
         function mouseColor(){
@@ -34,7 +38,17 @@
             });
         }
 
-        
+        function changeGrid(){
+            let rows = prompt("type rows in numbers");
+            let cols = prompt("type cols in numbers");
+            if  (isNaN(rows) || isNaN(cols)){
+                return alert("You didn't use numbers");
+            } else if(rows >= 64 || cols >= 64) {
+                return alert("too high");
+            }
+            clearRows();
+            return makeRows(rows, cols);//document.getElementById("makeRows").value = (rows, cols);
+        }
 
         makeRows(16,16);
     </script>
